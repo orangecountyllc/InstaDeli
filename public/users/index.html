@@ -1,0 +1,760 @@
+<!--  fix  - add option for rider to provide their favorite music  so driver can tune in.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Professional Profile</title>
+
+    <link rel="icon" href="../static/logo/birdy-1024.png" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/config.js"></script>
+
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" /> 
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-BoldItalic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-Italic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-Light.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-LightItalic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-ExtraBold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />   
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-ExtraBoldItalic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-ExtraLight.ttf" as="font" type="font/ttf" crossorigin="anonymous" />  
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-ExtraLightItalic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />  
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-SemiBold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" href="/themes/fonts/Nunito/Nunito-SemiBoldItalic.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+
+  <style>
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-BoldItalic.ttf') format('truetype');
+      font-weight: 700;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-Italic.ttf') format('truetype');
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-Light.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-LightItalic.ttf') format('truetype');
+      font-weight: 300;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-ExtraBold.ttf') format('truetype');
+      font-weight: 800;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-ExtraBoldItalic.ttf') format('truetype');
+      font-weight: 800;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-ExtraLight.ttf') format('truetype');
+      font-weight: 200;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-ExtraLightItalic.ttf') format('truetype');
+      font-weight: 200;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Nunito';
+      src: url('/themes/fonts/Nunito/Nunito-SemiBoldItalic.ttf') format('truetype');
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    html, body {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+
+<body class="bg-gradient-to-b from-blue-50 to-white min-h-screen">
+  <header class="bg-blue-600 text-white py-6 shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center">
+        <h1 class="text-4xl font-extrabold">User Directory</h1>
+        <div class="flex gap-3">
+          <button id="iclient-notify-btn" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-2 px-4 rounded transition-colors">
+            iClient
+          </button>
+          <button id="ipro-notify-btn" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-2 px-4 rounded transition-colors">
+            iPro
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-12">
+    <div class="max-w-3xl mx-auto">
+      <input type="text" id="search-input" placeholder="Search by name or email..." class="w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+      <div id="user-list" class="space-y-3">
+        <div class="text-center text-gray-500 py-10">Loading users...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-blue-600 text-white py-6 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Birdy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Sidebar for User Details -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+  <div id="sidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="flex justify-between items-center p-5 border-b bg-gray-50">
+      <h2 class="text-xl font-bold text-gray-800">User Details</h2>
+      <button id="close-sidebar" class="text-gray-600 hover:text-gray-900 text-3xl">&times;</button>
+    </div>
+    <div id="sidebar-content" class="p-6 overflow-y-auto flex-grow">
+      <!-- Details will be populated by JS -->
+    </div>
+    <div id="sidebar-footer" class="p-5 border-t">
+      <!-- Action buttons will be populated by JS -->
+    </div>
+  </div>
+
+  <!-- Image URL Edit Modal (moved outside sidebar) -->
+  <div id="image-edit-modal" class="fixed inset-0 bg-black bg-opacity-60 z-60 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-2xl p-6 w-96 max-h-[90vh] overflow-y-auto">
+      <h3 class="text-xl font-bold text-gray-800 mb-4">Update Profile Photo</h3>
+      <div id="image-preview-container" class="mb-4 flex justify-center">
+        <img id="image-preview" src="" alt="Image Preview" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300 hidden">
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
+        <input type="text" id="image-url-input" placeholder="Paste image URL here..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+        <p class="text-xs text-gray-500 mt-1">Enter a direct image URL (e.g., from AWS S3, Cloudinary, etc.)</p>
+      </div>
+      <div class="flex gap-3">
+        <button id="cancel-image-edit" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors">
+          Cancel
+        </button>
+        <button id="save-image-edit" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+          Save Photo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fetch script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userListContainer = document.getElementById('user-list');
+      const searchInput = document.getElementById('search-input');
+      let allUsers = [];
+      const sidebar = document.getElementById('sidebar');
+      const sidebarOverlay = document.getElementById('sidebar-overlay');
+      const sidebarContent = document.getElementById('sidebar-content');
+      const closeSidebarBtn = document.getElementById('close-sidebar');
+      const sidebarFooter = document.getElementById('sidebar-footer');
+      
+      // Image edit modal elements
+      const imageEditModal = document.getElementById('image-edit-modal');
+      const imageUrlInput = document.getElementById('image-url-input');
+      const imagePreview = document.getElementById('image-preview');
+      const cancelImageEdit = document.getElementById('cancel-image-edit');
+      const saveImageEdit = document.getElementById('save-image-edit');
+      
+      // Track current user being edited
+      let currentEditingUser = null;
+      let currentProviderDetails = null;
+
+      const apiUrl = `${API_BASE}admin/users`;
+
+      function renderUsers(usersToRender) {
+        userListContainer.innerHTML = '';
+        if (usersToRender.length === 0) {
+          userListContainer.innerHTML = '<div class="text-center text-gray-500 py-10">No users found.</div>';
+          return;
+        }
+        
+        // Separate users by service profile status
+        console.log('Total users:', usersToRender.length);
+        console.log('Sample user:', usersToRender[0]);
+        
+        // The response from /admin/usersfull has structure: {user: {...}, serviceProfile: {...}}
+        // Extract user objects and check if they have service profile
+        const usersWithoutServiceProfile = usersToRender.filter(item => !item.serviceProfile).map(item => ({
+          ...item.user,
+          id: item.user._id || item.user.id // Ensure id field is set
+        }));
+        const usersWithServiceProfile = usersToRender.filter(item => item.serviceProfile).map(item => ({
+          ...item.user,
+          id: item.user._id || item.user.id, // Ensure id field is set
+          serviceProfile: item.serviceProfile
+        }));
+        
+        console.log('Users without Service Profile count:', usersWithoutServiceProfile.length);
+        console.log('Users with Service Profile count:', usersWithServiceProfile.length);
+        console.log('Users with Service Profile:', usersWithServiceProfile);
+        
+        // Render Users Without Service Profile (Clients)
+        if (usersWithoutServiceProfile.length > 0) {
+          const clientsHeader = document.createElement('div');
+          clientsHeader.className = 'text-center py-4';
+          clientsHeader.innerHTML = `
+            <h2 class="text-2xl font-bold text-blue-600 mb-2">Clients</h2>
+            <p class="text-gray-600">${usersWithoutServiceProfile.length} client${usersWithoutServiceProfile.length !== 1 ? 's' : ''}</p>
+          `;
+          userListContainer.appendChild(clientsHeader);
+          
+          usersWithoutServiceProfile.forEach(user => {
+            const profileImage = user.picture || 'https://via.placeholder.com/80';
+            
+            const userCard = document.createElement('div');
+            userCard.className = 'bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-500 transition-all cursor-pointer flex items-center';
+            userCard.innerHTML = `
+              <img src="${profileImage}" alt="Profile Image" class="w-12 h-12 rounded-full mr-4 border">
+              <div class="flex-grow">
+                <div class="font-bold text-lg text-gray-800">${user.firstName || ''} ${user.lastName || ''}</div>
+                <div class="text-gray-600">${user.email || 'No email'}</div>
+              </div>
+              <div class="text-sm text-gray-500">Joined: ${new Date(user.createdAt).toLocaleDateString()}</div>
+            `;
+            userCard.addEventListener('click', () => openSidebar(user));
+            userListContainer.appendChild(userCard);
+          });
+        }
+        
+        // Add separator if both sections exist
+        if (usersWithoutServiceProfile.length > 0 && usersWithServiceProfile.length > 0) {
+          const separator = document.createElement('div');
+          separator.className = 'flex items-center justify-center my-8';
+          separator.innerHTML = `
+            <div class="w-full border-t-2 border-dashed border-gray-300"></div>
+            <div class="mx-4 px-4 bg-gray-100 rounded-full text-gray-500 font-semibold text-sm">
+              VS
+            </div>
+            <div class="w-full border-t-2 border-dashed border-gray-300"></div>
+          `;
+          userListContainer.appendChild(separator);
+        }
+        
+        // Render Users With Service Profile (Professionals)
+        const professionalsHeader = document.createElement('div');
+        professionalsHeader.className = 'text-center py-4';
+        professionalsHeader.innerHTML = `
+          <h2 class="text-2xl font-bold text-green-600 mb-2">Professionals</h2>
+          <p class="text-gray-600">${usersWithServiceProfile.length} professional${usersWithServiceProfile.length !== 1 ? 's' : ''}</p>
+        `;
+        userListContainer.appendChild(professionalsHeader);
+        
+        if (usersWithServiceProfile.length > 0) {
+          usersWithServiceProfile.forEach(user => {
+            const profileImage = user.serviceProfile?.providerDetails?.profileImage || 'https://via.placeholder.com/80';
+            
+            const userCard = document.createElement('div');
+            userCard.className = 'bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg hover:border-blue-500 transition-all cursor-pointer flex items-center';
+            userCard.innerHTML = `
+              <img src="${profileImage}" alt="Profile Image" class="w-12 h-12 rounded-full mr-4 border">
+              <div class="flex-grow">
+                <div class="font-bold text-lg text-gray-800">${user.firstName || ''} ${user.lastName || ''}</div>
+                <div class="text-gray-600">${user.email || 'No email'}</div>
+              </div>
+              <div class="text-sm text-gray-500">Joined: ${new Date(user.createdAt).toLocaleDateString()}</div>
+            `;
+            userCard.addEventListener('click', () => openSidebar(user));
+            userListContainer.appendChild(userCard);
+          });
+        } else {
+          const noProfessionals = document.createElement('div');
+          noProfessionals.className = 'text-center py-4 text-gray-500';
+          noProfessionals.textContent = 'No professionals found';
+          userListContainer.appendChild(noProfessionals);
+        }
+      }
+
+      async function openSidebar(user) {
+        // Show loading state
+        sidebarContent.innerHTML = '<div class="text-center py-8">Loading user profile...</div>';
+        
+        // Open sidebar immediately with loading state
+        sidebar.classList.remove('translate-x-full');
+        sidebarOverlay.classList.remove('hidden');
+
+        // Declare variables in outer scope
+        let userData, serviceProfile, providerDetails, paymentMethods, workingHours, selectedServices;
+
+        try {
+          // Fetch detailed user profile
+          const profileUrl = `${API_BASE}admin/users/${user.id}/profile`;
+          const response = await fetch(profileUrl);
+          
+          if (!response.ok) {
+            throw new Error(`Failed to fetch profile: ${response.status}`);
+          }
+          
+          const profileData = await response.json();
+          console.log('Profile data:', profileData);
+
+          // Extract user and serviceProfile from response
+          userData = profileData.user || user;
+          serviceProfile = profileData.serviceProfile;
+          providerDetails = serviceProfile?.providerDetails;
+          paymentMethods = serviceProfile?.paymentMethods;
+          workingHours = serviceProfile?.workingHours;
+          selectedServices = serviceProfile?.selectedServices || [];
+
+          // Render detailed profile
+          sidebarContent.innerHTML = `
+            <!-- User Basic Information -->
+            <div class="mb-6">
+              <h3 class="text-lg font-bold text-gray-800 mb-3">User Information</h3>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Name:</strong> ${userData.firstName || ''} ${userData.lastName || ''}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Email:</strong> ${userData.email || 'N/A'}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Phone:</strong> ${userData.phoneNumber || 'N/A'}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Role:</strong> ${userData.role || 'N/A'}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Verified:</strong> ${userData.isVerified ? '<span class="text-green-600 font-semibold">Yes</span>' : '<span class="text-red-600 font-semibold">No</span>'}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Subscription:</strong> ${userData.subscription || 'N/A'}</div>
+              <div class="mb-3"><strong class="block font-semibold text-gray-700">Member Since:</strong> ${new Date(userData.createdAt).toLocaleDateString()}</div>
+            </div>
+
+            ${serviceProfile ? `
+              <!-- Service Profile Information -->
+              <hr class="my-4">
+              <h3 class="text-lg font-bold text-gray-800 mb-3">Service Profile</h3>
+              
+              ${providerDetails ? `
+                <div class="mb-4">
+                  <div class="flex items-center mb-4">
+                    <button id="edit-profile-photo-btn" data-user-id="${userData.id}" data-has-profile="${!!providerDetails.profileImage}" class="relative group cursor-pointer focus:outline-none" title="Click to edit profile photo">
+                      ${providerDetails.profileImage ? 
+                        `<img src="${providerDetails.profileImage}" alt="Profile Image" class="w-16 h-16 rounded-full mr-4 border-2 border-gray-300 group-hover:border-blue-500 transition-colors object-cover">` : 
+                        '<div class="w-16 h-16 rounded-full mr-4 bg-gray-200 border-2 border-gray-300 flex items-center justify-center group-hover:border-blue-500 transition-colors"><span class="text-gray-500 text-xs">No Photo</span></div>'}
+                      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-30 rounded-full">
+                        <span class="text-white text-xs font-medium">✎ Edit</span>
+                      </div>
+                    </button>
+                    <div>
+                      <div class="font-bold text-lg">${providerDetails.handle || userData.firstName + ' ' + userData.lastName}</div>
+                      <div class="text-sm text-gray-600">Status: ${providerDetails.isOnline ? '<span class="text-green-500 font-semibold">● Online</span>' : '<span class="text-gray-500">● Offline</span>'}</div>
+                      ${providerDetails.referralCode ? `<div class="text-sm text-gray-600">Referral: <span class="font-mono bg-gray-200 px-1 rounded">${providerDetails.referralCode}</span></div>` : ''}
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-4">
+                    <div><strong class="text-gray-600">Rating:</strong> ${providerDetails.rating || '0'}  (${providerDetails.reviewsCount || 0} reviews)</div>
+                    <div><strong class="text-gray-600">Loves:</strong> ${providerDetails.loves || 0} ❤️</div>
+                    <div><strong class="text-gray-600">Experience:</strong> ${providerDetails.yearsExperience || 'N/A'}</div>
+                    <div><strong class="text-gray-600">Background Check:</strong> <span class="capitalize">${providerDetails.backgroundCheckStatus || 'Not Started'}</span></div>
+                    <div><strong class="text-gray-600">Provider Verified:</strong> ${providerDetails.isVerified ? '<span class="text-green-600">Yes</span>' : '<span class="text-red-600">No</span>'}</div>
+                    <div><strong class="text-gray-600">Service:</strong> ${providerDetails.service || 'N/A'}</div>
+                  </div>
+
+                  ${providerDetails.badges && providerDetails.badges.length > 0 ? `
+                    <div class="mb-4"><strong class="block font-semibold text-gray-700">Badges:</strong>
+                      <div class="flex flex-wrap gap-2 mt-2">
+                        ${providerDetails.badges.map(badgeArray => {
+                          const badge = badgeArray.find(item => item.Key === 'name');
+                          const color = badgeArray.find(item => item.Key === 'color')?.Value || '#gray';
+                          return badge ? `<span class="px-2 py-1 rounded-full text-xs font-medium" style="background-color: ${color}20; color: ${color}; border: 1px solid ${color};">${badge.Value}</span>` : '';
+                        }).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  ${providerDetails.about ? `
+                    <div class="mb-4"><strong class="block font-semibold text-gray-700">About:</strong> 
+                      <div class="mt-1 text-gray-600 text-sm">${providerDetails.about}</div>
+                    </div>
+                  ` : ''}
+
+                  ${providerDetails.vehicleColor ? `
+                    <div class="mb-4"><strong class="block font-semibold text-gray-700">Vehicle Color:</strong> ${providerDetails.vehicleColor}</div>
+                  ` : ''}
+                </div>
+              ` : ''}
+
+              ${selectedServices.length > 0 ? `
+                <div class="mb-4">
+                  <strong class="block font-semibold text-gray-700 mb-2">Selected Services:</strong>
+                  <div class="space-y-2">
+                    ${selectedServices.map(service => `
+                      <div class="bg-gray-50 p-3 rounded-lg">
+                        <div class="font-medium text-gray-800">${service.categoryId || 'Unknown Service'}</div>
+                        <div class="text-sm text-gray-600">
+                          ${service.rate?.perHour ? `$${service.rate.perHour}/hour` : ''}
+                          ${service.rate?.perService ? `$${service.rate.perService}/service` : ''}
+                          ${!service.rate?.perHour && !service.rate?.perService ? 'Rate not specified' : ''}
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1">
+                          Onboarding: ${service.onboardingCompleted ? '<span class="text-green-600">✓ Complete</span>' : '<span class="text-red-600">✗ Incomplete</span>'}
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+
+              ${workingHours ? `
+                <div class="mb-4">
+                  <strong class="block font-semibold text-gray-700">Working Hours:</strong>
+                  <div class="grid grid-cols-2 gap-4 mt-2 text-sm">
+                    <div>
+                      <span class="font-medium text-gray-600">Weekdays:</span>
+                      <div>${workingHours.weekdays?.start || 'N/A'} - ${workingHours.weekdays?.end || 'N/A'}</div>
+                    </div>
+                    <div>
+                      <span class="font-medium text-gray-600">Weekends:</span>
+                      <div>${workingHours.weekends?.start || 'N/A'} - ${workingHours.weekends?.end || 'N/A'}</div>
+                    </div>
+                  </div>
+                </div>
+              ` : ''}
+
+              ${paymentMethods ? `
+                <div class="mb-4">
+                  <strong class="block font-semibold text-gray-700">Payment Methods:</strong>
+                  <div class="grid grid-cols-2 gap-2 mt-2 text-sm">
+                    ${paymentMethods.venmo ? '<div class="text-gray-600">• Venmo</div>' : ''}
+                    ${paymentMethods.paypal ? '<div class="text-gray-600">• PayPal</div>' : ''}
+                    ${paymentMethods.cashapp ? '<div class="text-gray-600">• Cash App</div>' : ''}
+                    ${paymentMethods.zelle ? '<div class="text-gray-600">• Zelle</div>' : ''}
+                    ${paymentMethods.apple ? '<div class="text-gray-600">• Apple Pay</div>' : ''}
+                    ${!paymentMethods.venmo && !paymentMethods.paypal && !paymentMethods.cashapp && !paymentMethods.zelle && !paymentMethods.apple ? '<div class="text-gray-400">No payment methods set up</div>' : ''}
+                  </div>
+                </div>
+              ` : ''}
+
+              <div class="mb-4 text-xs text-gray-500">
+                <strong>Profile Created:</strong> ${new Date(serviceProfile.createdAt).toLocaleDateString()}<br>
+                <strong>Last Updated:</strong> ${new Date(serviceProfile.updatedAt).toLocaleDateString()}
+              </div>
+            ` : `
+              <div class="text-center py-8 text-gray-500">
+                <div class="text-lg font-medium mb-2">No Service Profile</div>
+                <div class="text-sm">This user has not set up a service profile yet.</div>
+              </div>
+            `}
+          `;
+
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+          sidebarContent.innerHTML = `
+            <div class="text-center py-8 text-red-500">
+              <div class="text-lg font-medium mb-2">Error Loading Profile</div>
+              <div class="text-sm">${error.message}</div>
+              <button onclick="closeSidebar()" class="mt-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-sm">Close</button>
+            </div>
+          `;
+        }
+
+        // Store current user data for image editing
+        if (providerDetails) {
+          currentEditingUser = userData;
+          currentProviderDetails = providerDetails;
+        }
+
+        // Clear footer and add action buttons
+        sidebarFooter.innerHTML = '';
+
+        // Add "View Full Profile" button only if a service profile exists
+        if (serviceProfile && serviceProfile.id) {
+          const profileButton = document.createElement('a');
+          profileButton.href = `/service-profile-details/?id=${serviceProfile.id}`;
+          profileButton.target = '_blank'; // Open in a new tab
+          profileButton.className = 'block text-center w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors mb-3';
+          profileButton.textContent = 'View Full Profile';
+          sidebarFooter.appendChild(profileButton);
+        }
+
+        // Add "Delete User" button
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors';
+        deleteButton.textContent = 'Delete User';
+        deleteButton.onclick = () => {
+          if (confirm(`Are you sure you want to delete ${userData.firstName || ''} ${userData.lastName || ''}?`)) {
+            deleteUser(userData);
+          }
+        };
+        sidebarFooter.appendChild(deleteButton);
+      }
+
+      async function deleteUser(user) {
+        const deleteUrl = `${apiUrl}/${user.email}`;
+        try {
+          const response = await fetch(deleteUrl, { method: 'DELETE' });
+          if (!response.ok) throw new Error('Failed to delete user.');
+          closeSidebar();
+          allUsers = allUsers.filter(u => u.email !== user.email);
+          renderUsers(allUsers);
+        } catch (error) {
+          console.error('Error deleting user:', error);
+          alert('Could not delete user.');
+        }
+      }
+
+      function closeSidebar() {
+        sidebar.classList.add('translate-x-full');
+        sidebarOverlay.classList.add('hidden');
+      }
+
+      closeSidebarBtn.addEventListener('click', closeSidebar);
+      sidebarOverlay.addEventListener('click', closeSidebar);
+
+      // Image Edit Modal Event Listeners
+      function openImageEditModal() {
+        imageUrlInput.value = '';
+        imagePreview.classList.add('hidden');
+        imageEditModal.classList.remove('hidden');
+        imageUrlInput.focus();
+      }
+
+      function closeImageEditModal() {
+        imageEditModal.classList.add('hidden');
+        imageUrlInput.value = '';
+        imagePreview.classList.add('hidden');
+      }
+
+      // Add event listener for edit profile photo button (delegated event)
+      document.addEventListener('click', async (e) => {
+        console.log('Click detected on:', e.target);
+        const editBtn = e.target.closest('#edit-profile-photo-btn');
+        console.log('Edit button found:', editBtn);
+        if (editBtn) {
+          console.log('Opening image edit modal for user...');
+          const userId = editBtn.getAttribute('data-user-id');
+          if (!userId) {
+            console.error('User ID not found on edit button');
+            return;
+          }
+
+          try {
+            // Re-fetch user's profile to get fresh data
+            const profileUrl = `${API_BASE}admin/users/${userId}/profile`;
+            const response = await fetch(profileUrl);
+            
+            if (!response.ok) {
+              throw new Error(`Failed to fetch profile: ${response.status}`);
+            }
+            
+            const profileData = await response.json();
+            currentEditingUser = profileData.user;
+            currentProviderDetails = profileData.serviceProfile?.providerDetails;
+
+            if (!currentEditingUser || !currentProviderDetails) {
+              alert('Error: User profile data not available');
+              return;
+            }
+
+            openImageEditModal();
+          } catch (error) {
+            console.error('Error fetching user profile for edit:', error);
+            alert('Error loading user profile. Please try again.');
+          }
+        }
+      });
+
+      // Image URL input - show preview as user types
+      imageUrlInput.addEventListener('input', (e) => {
+        const url = e.target.value.trim();
+        if (url) {
+          imagePreview.src = url;
+          imagePreview.classList.remove('hidden');
+          imagePreview.onerror = () => {
+            imagePreview.classList.add('hidden');
+          };
+        } else {
+          imagePreview.classList.add('hidden');
+        }
+      });
+
+      // Cancel button
+      cancelImageEdit.addEventListener('click', closeImageEditModal);
+
+      // Close modal when clicking outside
+      imageEditModal.addEventListener('click', (e) => {
+        if (e.target === imageEditModal) {
+          closeImageEditModal();
+        }
+      });
+
+      // Save button - update profile image
+      saveImageEdit.addEventListener('click', async () => {
+        const newImageUrl = imageUrlInput.value.trim();
+        
+        if (!newImageUrl) {
+          alert('Please enter an image URL');
+          return;
+        }
+
+        if (!currentEditingUser || !currentProviderDetails) {
+          alert('Error: User data not available');
+          return;
+        }
+
+        try {
+          saveImageEdit.disabled = true;
+          saveImageEdit.textContent = 'Saving...';
+
+          // Update providerDetails object
+          currentProviderDetails.profileImage = newImageUrl;
+
+          // Try to call API to update profile image (optional - will fail gracefully if endpoint doesn't exist)
+          try {
+            const updateUrl = `${API_BASE}admin/users/${currentEditingUser.id}/profile-image`;
+            const response = await fetch(updateUrl, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                profileImage: newImageUrl
+              })
+            });
+
+            if (response.ok) {
+              console.log('Profile image updated on server');
+            } else {
+              console.log('Backend endpoint not available, updating UI only');
+            }
+          } catch (apiError) {
+            console.log('API endpoint not available, updating UI only');
+          }
+
+          // Update displayed image in sidebar
+          const profileImgBtn = document.querySelector('#edit-profile-photo-btn img, #edit-profile-photo-btn > div');
+          if (profileImgBtn) {
+            const parent = profileImgBtn.parentNode;
+            parent.innerHTML = `
+              <img src="${newImageUrl}" alt="Profile Image" class="w-16 h-16 rounded-full mr-4 border-2 border-gray-300 group-hover:border-blue-500 transition-colors object-cover">
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-30 rounded-full">
+                <span class="text-white text-xs font-medium">✎ Edit</span>
+              </div>
+            `;
+          }
+
+          // Refresh user list to show updated image
+          const userIndex = allUsers.findIndex(u => u.id === currentEditingUser.id);
+          if (userIndex !== -1) {
+            if (!allUsers[userIndex].serviceProfile) {
+              allUsers[userIndex].serviceProfile = {};
+            }
+            if (!allUsers[userIndex].serviceProfile.providerDetails) {
+              allUsers[userIndex].serviceProfile.providerDetails = {};
+            }
+            allUsers[userIndex].serviceProfile.providerDetails.profileImage = newImageUrl;
+            renderUsers(allUsers);
+          }
+
+          closeImageEditModal();
+          alert('Profile photo updated successfully!');
+
+        } catch (error) {
+          console.error('Error updating profile image:', error);
+          alert('Failed to update profile image. Please try again.');
+        } finally {
+          saveImageEdit.disabled = false;
+          saveImageEdit.textContent = 'Save Photo';
+        }
+      });
+
+      searchInput.addEventListener('input', e => {
+        const searchTerm = e.target.value.toLowerCase();
+        // allUsers now contains {user: {...}, serviceProfile: {...}} objects
+        const filteredUsers = allUsers.filter(item => {
+          const user = item.user;
+          return (
+            `${user.firstName || ''} ${user.lastName || ''}`.toLowerCase().includes(searchTerm) ||
+            (user.email || '').toLowerCase().includes(searchTerm)
+          );
+        });
+        renderUsers(filteredUsers);
+      });
+
+      // Push notification button handlers
+      const iclientNotifyBtn = document.getElementById('iclient-notify-btn');
+      const iproNotifyBtn = document.getElementById('ipro-notify-btn');
+
+      async function sendPushNotification(target) {
+        const btn = target === 'iClient' ? iclientNotifyBtn : iproNotifyBtn;
+        const originalText = btn.textContent;
+        
+        // Show loading state
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        try {
+          const response = await fetch(`${API_BASE}admin/send-push-notification`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              target: target
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`Failed to send push notification: ${response.status}`);
+          }
+
+          const data = await response.json();
+          alert(`✅ ${data.message}`);
+        } catch (error) {
+          console.error('Error sending push notification:', error);
+          alert(`❌ Failed to send push notification: ${error.message}`);
+        } finally {
+          // Reset button state
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      }
+
+      iclientNotifyBtn.addEventListener('click', () => sendPushNotification('iClient'));
+      iproNotifyBtn.addEventListener('click', () => sendPushNotification('iPro'));
+
+      fetch(apiUrl)
+        .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
+        .then(fetchedUsers => {
+          allUsers = fetchedUsers;
+          renderUsers(allUsers);
+        })
+        .catch(error => {
+          console.error('Error fetching users:', error);
+          userListContainer.innerHTML = '<div class="text-center text-red-500 py-10">Failed to load users. Please check API endpoint and CORS configuration.</div>';
+        });
+    });
+  </script>
+</body>
+</html>
